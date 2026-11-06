@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["encode_metadata_only"],"struct":["BincodeAdapter","CuMsgMetadata","CuStampedData"],"trait":["CuMsgPack","CuMsgPayload","CuSingleOutputMsg","CuSinkTask","CuSrcTask","CuStatelessTask","CuTask","Freezable"],"type":["CuMsg"]};

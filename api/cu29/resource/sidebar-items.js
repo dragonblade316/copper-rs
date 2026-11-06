@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":["Borrowed","BundleContext","BundleIndex","Owned","ResourceBindingMap","ResourceKey","ResourceManager"],"trait":["NamedResourceBundleDecl","ResourceBindings","ResourceBundle","ResourceBundleDecl","ResourceId"]};

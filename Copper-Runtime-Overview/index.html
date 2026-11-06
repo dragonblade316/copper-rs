@@ -1,0 +1,1875 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://copper-project.github.io/copper-rs/Copper-Runtime-Overview/">
+      
+      
+        <link rel="prev" href="../Task-Automation-with-Just/">
+      
+      
+        <link rel="next" href="../Config-and-Missions-Visualization/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>Copper Runtime Overview - Copper Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#copper-runtime-overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Copper Wiki" class="md-header__button md-logo" aria-label="Copper Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Copper Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Copper Runtime Overview
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/copper-project/copper-rs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Copper Wiki" class="md-nav__button md-logo" aria-label="Copper Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Copper Wiki
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/copper-project/copper-rs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Start
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://copper-project.github.io/copper-rs-book/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Copper Book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Copper-Release-Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Project-Templates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Templates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Copper-Application-Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Copper Application Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Build-and-Deploy-a-Copper-Application/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build and Deploy a Copper Application
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Copper-RON-Configuration-Reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Copper Configuration file Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Task-Automation-with-Just/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Task Automation with just
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Copper Runtime Overview
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Copper Runtime Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#task-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task Graph
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runtime-generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtime Generator
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zero-copy-data-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zero-Copy Data Logging
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fast-structured-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fast Structured Logging
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fast Structured Logging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remote-structured-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remote structured logs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdk-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SDK Capabilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#received-native-log-archives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Received native log archives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#native-ground-station-telemetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Native ground-station telemetry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#live-copper-twin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live Copper twin
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Config-and-Missions-Visualization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Copper Configuration and Mission Visualization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Task-Lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Copper Tasks lifecycle overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CuBridge-Concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Copper Bridge concept
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Modular-Configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modular Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embedded
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Embedded
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Baremetal-Development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Baremetal Development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Supported-Platforms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supported Platforms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reading-Unified-Logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reading Unified Logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Self-Describing-Logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Self-describing logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Remote-Debugging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remote Debugging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SDK-Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SDK Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://cdn.copper-robotics.com/catalog/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Copper Component Catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FAQ/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    External
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/copper-project/copper-rs" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Source code on GitHub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://docs.rs/cu29" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API docs on docs.rs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://crates.io/crates/cu29" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crates.io
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://discord.gg/VkCG7Sb9Kw" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Discord
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#task-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task Graph
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runtime-generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtime Generator
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zero-copy-data-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zero-Copy Data Logging
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fast-structured-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fast Structured Logging
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fast Structured Logging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remote-structured-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remote structured logs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdk-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SDK Capabilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#received-native-log-archives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Received native log archives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#native-ground-station-telemetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Native ground-station telemetry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#live-copper-twin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live Copper twin
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="copper-runtime-overview">Copper Runtime Overview<a class="headerlink" href="#copper-runtime-overview" title="Permanent link">&para;</a></h1>
+<p>Copper is a deterministic, data-oriented runtime for robotics. You describe your system declaratively, Copper compiles the schedule, and every run is bit-for-bit reproducible.</p>
+<h2 id="task-graph">Task Graph<a class="headerlink" href="#task-graph" title="Permanent link">&para;</a></h2>
+<p>The task graph defines your system topology, inter-task communication, and message types. It is expressed in RON and drives how Copper builds the runtime.</p>
+<p>See <a href="../Copper-RON-Configuration-Reference/">Copper RON Configuration Reference</a> for the full schema.</p>
+<h2 id="runtime-generator">Runtime Generator<a class="headerlink" href="#runtime-generator" title="Permanent link">&para;</a></h2>
+<p>Copper creates an execution plan from the task graph metadata. At startup it preallocates a pool of CopperLists and initializes every message in place with an empty (<code>None</code>) payload and valid metadata. This applies to synchronous, asynchronous, and parallel execution.</p>
+<p>Each execution cycle reuses an initialized slot: the runtime updates the list identifier and lifecycle state, resets per-cycle metadata, and retains payload storage for tasks to reuse. Tasks publish a value with <code>set_payload(...)</code> or clear it with <code>clear_payload()</code>. Pool initialization is paid once at startup.</p>
+<p>Two visualizers answer different questions:</p>
+<ul>
+<li><code>just graph</code> shows topology: components, ports, connections, and resources.</li>
+<li><code>just sched</code> shows the exact generated per-CopperList process order with one scheduler model in both projections. Serial is the main CopperList executor with one worker, including woven anytime refinements; parallel is the staggered generated-stage wavefront. Background nodes appear as poll/dispatch gateways in either projection, with arrows into aligned named-pool worker lanes whose open-ended bars expose work that may persist across later CopperLists. Large in-flight depths show a six-CopperList window (<code>CL n</code> through <code>CL n+5</code>) while reporting the real configured depth. Repeated configured resource targets are highlighted as potential contention, including background jobs and skew outside the nominal wavefront. The columns are ordinal positions, not measured time.</li>
+</ul>
+<p>When a config contains missions, <code>just sched</code> stacks every mission by default; pass the mission argument to select one. <code>just sched-log</code> uses the local example log and typed logreader; pass explicit log and logreader arguments to select other inputs. Observed task segments are packed back-to-back while remaining proportional to recorded process duration, with carried-forward stale slots excluded. Observed overlap on the same declared resource is a risk signal, not proof of lock contention; serialization, queue wait, wrapper overhead, and CPU/worker identity cannot be isolated from the current log. Multi-Copper plans remain unsupported.</p>
+<h2 id="zero-copy-data-logging">Zero-Copy Data Logging<a class="headerlink" href="#zero-copy-data-logging" title="Permanent link">&para;</a></h2>
+<p>Messages between tasks are recorded without copying data. Logs can be replayed exactly, making debugging and certification practical.</p>
+<p>Generated applications encode CopperList metadata as a lossless, independently decodable block. Presence planes omit absent TOVs, process times, status strings, origins, and payloads; timestamps use one absolute nanosecond base plus exact deltas; repeated status and origin values are referenced within that CopperList. Payload serialization, including configured <code>CuLogCodec</code> implementations, remains separate and unchanged.</p>
+<p>This compressed encoding is the generated default for both <code>std</code> and <code>no_std</code>. Applications that are more CPU-bound than I/O-bound can enable the <code>cu29/flat-copperlist-encoding</code> Cargo feature to restore the previous per-message flat encoding. Writers and typed readers for a log must be built with the same choice, consistent with Copper's existing version-matched log compatibility model.</p>
+<p>CopperLists serialize their <code>id</code> and <code>msgs</code>; their lifecycle <code>state</code> remains
+runtime-only. Binary logs, Serde exports, Python exports, and remote-debug
+snapshots all omit it. Decoding reconstructs <code>BeingSerialized</code> internally rather
+than restoring recorded lifecycle history.</p>
+<p>Unified-log encapsulation version <strong>2</strong> describes file and section layout, including
+static metadata and construction context. Decode messages with the producing
+application's typed logreader or its embedded catalog. Logstream carries
+no version fields in packets, records, RLC fragments, or session manifests.
+Compressed metadata keeps the same bytes while reusing <code>cu-bincode</code> 2.1's selective
+<code>Uleb128&lt;T&gt;</code> wrapper for timestamp deltas and metadata backreferences. Ordinary
+bincode integers and payload encoding keep their existing representation.</p>
+<p>Logstream session manifests carry identity, receiver requirements, application
+schema and the producing section context using standard bincode encoding.
+Requirements contain only symbol size,
+RLC field, window symbols, maximum complete CopperList record bytes, and optional
+feedback requirements: report interval and destination key. Feedback timeout and
+adaptation bounds stay in the local sender configuration. The receiver validates those values and enforces its own decoder and buffering limits.
+RaptorQ geometry comes from packet OTI and uses receiver-local object limits.
+Destination ID, MTU, pacing, sender memory budget, repair policy, recovery interval,
+and sender object bounds remain local to the sender. For the <code>ground</code> test profile
+(1128-byte symbols, GF(256), window 64, 65536-byte records), one-way requirements take 11
+bincode bytes versus 40 for the former sender plan: 29 bytes saved per repeated
+manifest. Savings vary with policy values and destination-name length. Schema checks remain intact; recovery points still bind the exact
+manifest record by digest. Use matching sender and receiver builds.</p>
+<p>Logstream packet headers omit packet sequence counters: FEC symbol identifiers
+and record identities provide recovery and deduplication. RLC source headers use
+32 bytes and repair headers use 36 bytes; RaptorQ headers use 51 bytes. RLC carries
+object identity, record length, and fragment index inside its protected source
+fragments, and transmits only the active FEC ID bytes. The protected fragment header
+uses 20 bytes: magic (4), object ID (8), record length (4), and fragment index (4).
+Fragment count and payload length are derived from that geometry and the configured
+symbol capacity; fragment kind is implicitly CopperList. The reassembled record
+must still match that kind and identity and pass digest verification. This frees
+7 bytes per source fragment compared with the previous 27-byte header, allowing
+more record data in each fixed-size symbol and sometimes fewer fragments.
+RaptorQ transmits 11 OTI bytes, omitting the reserved zero byte at index 5
+of the library's 12-byte representation. The receiver restores that byte
+before validating geometry and decoding; encoding rejects a nonzero reserved
+byte. This saves one byte per RaptorQ source or repair packet.
+Preallocated symbol capacity stays at 1128 bytes. At a 1200-byte MTU, packets are
+at most 1160 bytes for RLC sources, 1164 for RLC repairs, and 1179 for RaptorQ.
+Packet payload length is derived from the complete packet extent supplied by the
+carrier, saving two bytes per packet. Serial and transparent-radio adapters frame
+byte streams into complete packets before decoding.
+Semantic records use a 45-byte header: magic (4), kind (1), object ID (8), and
+BLAKE3 digest (32). Payload length is derived from the complete reassembled record,
+saving eight bytes per record. The digest still binds kind, object ID, payload length
+as a big endian u64, and payload, so recovery-point digest references are unchanged.
+Truncated payloads and appended bytes fail digest verification; receiver allocation
+bounds still apply to the complete framed record before assembly.
+Data packets and feedback reports use the same transport integrity contract,
+saving four bytes per packet in both directions. Neither LogStream format carries
+an inner CRC. Delivery, ordering, and uniqueness are not guaranteed; feedback
+controllers reject stale and duplicate reports using their sequence and counters.
+UDP supplies packet integrity through the network stack. Raw serial supplies
+neither packet boundaries nor integrity. The framing adapter between LogStream
+and raw serial appends a four-byte big endian CRC32C over the complete unescaped
+packet, then escapes packet and checksum between delimiters. The adapter verifies and
+strips the checksum before delivery, discards damaged frames, and resynchronizes
+at the next delimiter. This turns corruption into packet loss before FEC.
+A 514-byte framing buffer permits packets up to 252 bytes
+under worst-case escaping: <code>(N - 2) / 2 - 4</code>. Account for framing/checksum bytes,
+escaping, and serial start/stop bits when budgeting link throughput. Both serial
+peers need the new framing; the older adapter that relied on the common CRC is
+incompatible. Direct decoder callers must supply complete, carrier-verified packets.
+Record digests and recovery-point digest references retain their content binding.
+Sender and receiver must use the matching wire layout.</p>
+<p>Generated LogStream twins seal application metadata when opening their receiver archive. With <code>cu29/self-describing-logs</code>, the twin also writes the shared decode catalog from its compiled missions and payload recipes. Build sender and twin from the same application definitions and encoding features to obtain identical catalogs. Received captures can then be decoded by the standalone log extractor. Archive configuration capture is deferred; the effective configuration string is empty.</p>
+<p>With LogStream enabled, the shared catalog includes streamed payload recipes even when onboard task logging is disabled.</p>
+<p>Set <code>.with_log_rollover(bytes)</code> on the twin builder to retain recent data within a fixed archive capacity. This uses the unified logger's <code>OverwriteOldest</code> policy and retains static metadata and the decode catalog. Capacity must exceed the configured section size, be a multiple of 512 bytes, and fit static metadata plus one archive section. For example, <code>.with_log_rollover(256 * 1024 * 1024)</code> bounds the archive slabs to 256 MiB.</p>
+<p>Each sender session belongs to one construction. Its repeated manifest carries the onboard section context: run ID, instance ID and mission index. All receiver archive sections preserve that context across rollover, and late joins recover it from the manifest. Select the twin generated for the sender's active mission; a new construction requires a new session and archive. Lifecycle transitions and failures remain runtime events in the onboard log.</p>
+<h2 id="fast-structured-logging">Fast Structured Logging<a class="headerlink" href="#fast-structured-logging" title="Permanent link">&para;</a></h2>
+<p>Structured log strings are interned and indexed at compile time. Runtime logging avoids string construction overhead and keeps hot paths fast.</p>
+<h3 id="remote-structured-logs">Remote structured logs<a class="headerlink" href="#remote-structured-logs" title="Permanent link">&para;</a></h3>
+<p>With <code>cu29/logstream</code> and a configured <code>log_streaming</code> destination, generated runtimes forward structured entries alongside CopperLists and keyframes. Each destination gets a bounded copy of the bytes from the existing local serialization pass; framing, FEC, and transmission run on background workers. Local logging continues when streamed entries exceed their buffer limit or are shed under pressure.</p>
+<p>Message templates and parameter names travel as interned numeric IDs. Typed parameter values retain their native encoding. The receiver uses the producing application's <code>cu29_log_index</code> to reconstruct readable text and archives the original binary entries in <code>StructuredLogLine</code> sections.</p>
+<p>A generated twin exposes <code>take_log_reader()</code> for an independent log view after archival, with a default capacity of 64 entries. Configure it with <code>.with_log_capacity(capacity)</code> before <code>.spawn()</code>. Pausing or dropping the view leaves recording active. In <code>examples/cu_logstream_demo</code>, run <code>just telemetry</code>, then <code>just sender</code> in another terminal: the robot emits simulated encoder temperature and supply-voltage diagnostics with <code>info!(ctx, ...)</code>, and the remote log pane displays them. These numeric diagnostics travel only in structured logs; task messages carry joint angles. Use <code>--log-index &lt;path&gt;</code> to select the sender build's index on another machine.</p>
+<h2 id="sdk-capabilities">SDK Capabilities<a class="headerlink" href="#sdk-capabilities" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Task interface and lifecycle traits for implementing new algorithms, sensors, and actuators.</li>
+<li>Compile-time runtime generation with deterministic scheduling.</li>
+<li>Log readers that export Copper logs using Rust Serde formats.</li>
+<li>Structured log reader for efficient debug and telemetry data.</li>
+<li>Experimental Python support for offline log analysis and single-task prototyping. See <a href="../Python-Support/">Python Support</a>.</li>
+<li>A growing set of components and drivers (see the <a href="https://cdn.copper-robotics.com/catalog/index.html">Copper Component Catalog</a>).</li>
+<li>Deterministic log replay and resimulation.</li>
+<li>A minimal simulation environment for hardware-free testing.</li>
+</ul>
+<h2 id="received-native-log-archives">Received native log archives<a class="headerlink" href="#received-native-log-archives" title="Permanent link">&para;</a></h2>
+<p>The feature-gated logstream receiver discovers a sender's manifest through any
+<code>CuStreamRx</code> resource. <code>SessionRouter</code> buffers a bounded number of packets before
+manifest discovery and accepts keyframes and anchors in any arrival order. A
+restart boundary is usable only after its manifest and keyframe digests and
+CopperList ids agree. Missing startup history is recorded as a <code>LateJoin</code> gap;
+outages and expired recovery windows also produce explicit inclusive gaps.</p>
+<p><code>cu29_logstream::NativeArchive&lt;P&gt;</code> derives the expected schema from the generated
+application dataset type, validates each received CopperList, and appends its
+canonical bytes to the ordinary native <code>CopperList</code> section. Only verified
+keyframes enter <code>FrozenTasks</code>. A <code>StreamContinuity</code> section records the manifest,
+gaps, verified anchors, and receiver finalization. Use a separate archive path for
+each sender/session. This slice requires the matching full-capture native codec.</p>
+<p>Ordinary application logreaders can read the archive. <code>fsck</code> reports source gaps
+and verified anchors, and <code>cu29_export::stream_continuity_reader</code> exposes those
+records programmatically. Generated recorded replay and indexed state replay
+reject missing CopperList history unless a keyframe restores state at the next
+boundary. A restart does not fill the missing history or prove completeness of
+an unobserved tail.</p>
+<p>Generated exact-output replay aligns the next allocated CopperList id with the
+recorded recovery boundary and drains pending output between offline iterations.
+This preserves IDs after a gap and prevents the replay harness from overrunning
+the bounded output pool. Production real-time execution keeps its nonblocking
+handoff. Replay harnesses explicitly restore task state from verified keyframes.</p>
+<p>Receiver allocation and file I/O stay off the real-time path. The startup packet
+cache and completed recovery-object cache have explicit receiver-local bounds in
+addition to RLC and RaptorQ bounds. Run <code>just logstream-receiver-check</code> in the source
+checkout. The <a href="https://github.com/copper-project/copper-rs/tree/master/examples/cu_logstream_demo">two-process UDP demo</a>
+compares the received archive with the onboard log and exercises ordinary
+logreader/replay workflows. Run <code>just</code> in <code>examples/cu_logstream_demo</code> for a clean
+link, or select <code>loss</code>, <code>outage</code>, <code>late</code>, <code>restart</code>, or <code>idle</code> with <code>just run</code>. Logs stay under the
+example's own <code>logs/</code> directory. <code>just logstream-demo-check</code> from the root runs all
+scenarios, including a real receiver process restart while the sender continues.
+The display shows archived records, verified anchors, and explicit gaps.</p>
+<p>Generated streaming destinations now have one background sender owning the
+carrier, FEC state, bounded queues, and a shared bitrate/burst budget. Byte-deficit
+scheduling gives replay and recovery weights 3:1. Ordinary packets expire after
+the configured latency from encoded-record admission. All work remains after the
+existing real-time ownership handoff; no runtime object waits for transmission.</p>
+<p>The manifest and latest complete keyframe/anchor/CopperList-boundary bundle repeat
+on a 250 ms local deadline, with overlapping requests coalesced. A transfer finishes
+before a newer bundle replaces it. <code>just run idle</code> loses the initial transmission,
+then recovers one captured CopperList with no subsequent task captures.</p>
+<p>Pacing uses <code>RobotClock</code> and requires no ground/robot time synchronization.
+Generated real-link senders use a running clock when application time is mocked.
+Shutdown stops repetition and drains only to the configured latency deadline.
+Sender counters and failures are recorded through Copper structured logging.
+The destination budget covers explicit sender buffers and continuous state;
+thread stacks, channel/allocator bookkeeping, and object-size-bounded RaptorQ
+scratch allocations remain additional. Four pending CL boundaries and two pending
+keyframes bound cross-worker skew; pressure replaces the oldest pending entries.</p>
+<p><code>CuFeedbackTx</code>/<code>CuFeedbackRx</code> are logical packet interfaces: a shared duplex carrier
+or separate endpoints can supply them. Autonomous operation uses <code>OneWay&lt;T&gt;</code>.
+Optional validated receiver feedback adjusts repair rate within configured limits;
+feedback requests share the sender scheduler and retention bounds. Run
+<code>just logstream-feedback-check</code> for feedback and adaptive FEC checks.</p>
+<h2 id="native-ground-station-telemetry">Native ground-station telemetry<a class="headerlink" href="#native-ground-station-telemetry" title="Permanent link">&para;</a></h2>
+<p>The UDP demo now includes an optional Ratatui screen. In <code>examples/cu_logstream_demo</code>,
+start <code>just telemetry</code>, then <code>just sender</code> in another terminal. Use fresh log paths
+for repeated runs. The manual sender runs for about a minute. Space pauses the view;
+q closes the receiver and its archive. The screen shows captured joint angles,
+the reconstructed arm pose, encoder charts, remote structured logs, packet
+freshness, archive progress, recovery anchors, and separate source-gap and
+UI-overwrite counts.</p>
+<p>The std-only <code>cu29_logstream::telemetry::telemetry_channel</code> moves successfully archived,
+already decoded frames into a bounded circular buffer. User code waits on <code>ready().await</code>,
+<code>wait_timeout</code>, or a registered scheduling waker, then pulls <code>try_read()</code> on its own thread.
+It receives a stable borrowed typed frame and an exact count of unread overwritten samples,
+resuming at the oldest retained frame. Status is coalesced separately and remains readable
+while the view is paused. There are no receiver-thread data callbacks. The user owns chart
+history, projections, storage, and widgets. The demo uses generated named task accessors.</p>
+<p>Storage is preallocated for the ring and one in-flight reader frame; payload-owned allocations
+are additional. Recording never waits for slow or disconnected readers.
+Both share a process failure boundary. Only successfully archived captures enter this initial
+telemetry path; a writer error is reported rather than retried or hidden.</p>
+<p>Run <code>just logstream-telemetry-check</code> at the repository root for notification/overrun tests,
+archive equality with fast/stalled/disconnected readers, terminal layouts, and all six
+existing UDP recovery/replay scenarios. The UI dependency is behind the example's <code>tui</code>
+feature; telemetry is std-only and adds no work to the robot's real-time task path.</p>
+<h2 id="live-copper-twin">Live Copper twin<a class="headerlink" href="#live-copper-twin" title="Permanent link">&para;</a></h2>
+<p>The demo graph is <code>encoders -&gt; kinematics</code>. The ordinary <code>Kinematics</code> Copper task
+computes the arm pose from joint angles on the robot and in generated ground-side
+replay. Its payload is never transmitted, including repeated anchor boundaries
+and FEC repairs. The robot's onboard log contains the full output for comparison.
+The telemetry screen identifies the reconstructed pose and labels it
+<strong>pose payload not transmitted</strong>.</p>
+<p>Declare the static contract in the same RON used by the robot and ground build:</p>
+<pre><code class="language-ron">(id: &quot;kinematics&quot;, type: &quot;cu_logstream_demo::tasks::Kinematics&quot;,
+ streaming: (replay: reconstruct)),
+</code></pre>
+<p>Reconstruction recomputes outputs from captured inputs, clock, and frozen state.
+It supports ordinary synchronous logged tasks using the lossless native compressed
+codec and full handle capture. Every producer feeding a reconstructed task must
+have logging enabled; invalid connections fail compilation. Use deterministic task
+code without external side effects when reconstructing on another target.</p>
+<p>A ground station declares <code>#[copper_runtime(config = "copperconfig.ron", sim_mode = true)]</code>.
+The generated application exposes a twin builder:</p>
+<p>```rust,ignore
+let (mut twin, mut frames) = Ground::twin(rx)
+    .with_log_path("logs/received.copper")
+    .spawn()?;</p>
+<p>// On the UI or analysis thread:
+frames.wait_timeout(std::time::Duration::from_millis(50));
+while let Some(update) = frames.try_read() {
+    render(&amp;update.frame.copperlist);
+}
+let status = twin.stop()?;
+```</p>
+<p><code>rx</code> is any <code>CuStreamRx</code>, such as the receive half of a UDP resource. Copper owns
+session routing, native recording, the bounded replay worker, status publication,
+and shutdown. The caller owns the frame reader and presentation. Pausing or dropping
+that reader never blocks recording. Dropping the twin stops and joins its workers;
+<code>stop()</code> also reports receiver errors and final counters. <code>archive_only()</code> records
+without running a twin. Each handle accepts one sender session and a fresh log path.
+Configure the twin by chaining <code>.with_slab_size(bytes)</code>, <code>.with_section_size(bytes)</code>,
+<code>.with_receiver_limits(limits)</code>, <code>.with_replay_capacity(capacity)</code>,
+<code>.with_frame_capacity(capacity)</code>, and <code>.with_log_capacity(capacity)</code> before <code>.spawn()</code>.
+<code>SessionRouterLimits::default()</code> supplies one sender using the 1200-byte-MTU,
+64-symbol FEC profile, 4 KiB records and 64 KiB finite objects. Override record and
+finite-object bounds for the application's largest serialized CopperList and
+keyframe. Defaults are 16 MiB slabs, 128 KiB sections, 32 replay events and
+pending captures per buffer, and 64 unread reconstructed CopperLists and
+structured log entries per reader buffer.</p>
+<p>Sections must fit the larger configured record/object bound plus a 512-byte header
+and 32 bytes of continuity envelope allowance, and must fit in a slab. Both sizes
+must be multiples of 512 bytes. Prefer slabs roughly 10–100 times larger than
+sections so each backing file holds many sections and file turnover stays low.
+Larger slabs reserve more disk space at a time. The archive grows with additional
+slabs. Local settings are validated before workers start; sender record requirements are checked
+when the manifest arrives. Size retention and concurrency counts together with
+byte bounds for the receiver's memory budget.</p>
+<p>Replay buffers absorb temporary reconstruction slowdowns; overflow interrupts
+replay until a matching recovery point is available while recording continues.
+A frame is one reconstructed CopperList containing captured inputs and locally
+computed outputs for one iteration. Frame buffering lets UI or analysis readers
+pause. Structured log buffering separately holds the robot's logging calls,
+such as <code>info!</code> and <code>debug!</code>, for <code>twin.take_log_reader()</code>. Both reader buffers
+replace the oldest unread item when full; the archive keeps the received data.
+Higher counts retain more message payloads and log entries in memory. The
+<a href="https://github.com/copper-project/copper-rs/blob/master/examples/cu_logstream_demo/src/receiver.rs">receiver example</a>
+uses named constants with explanations of the storage and buffer sizing.</p>
+<p>Production sends the existing native CopperList format with selected payloads omitted.
+The native codec already carries original/captured presence. The receiver records received native bytes before replay; synthesized outputs remain
+in the ground-side frame. Sender and receiver use the same application schema and
+Copper version. Packet framing, FEC, and verified recovery points preserve stream
+continuity across gaps.</p>
+<p>Copper restores keyframes, injects captured inputs, executes reconstructible tasks and
+restores sender metadata before downstream tasks run. Existing source gaps and replay
+queue overflows require a matching recovery anchor. These continuity checks are separate
+from checking whether deterministic task code produced the right result. The generated
+ground runtime disables its own logging and transport transmitters; its archive is owned
+by the twin receiver.</p>
+<p>Reconstruction correctness checks are <strong>entirely opt-in</strong>, even in debug Rust builds.
+Enable <code>cu29/logstream-verify</code> (the demo calls it <code>verify-reconstruction</code>) on both ends
+for development. Only this feature compiles in hashing and a fixed 32-byte digest trailer
+covering the omitted outputs and their payload presence. Hashing runs on the existing
+sender output worker and the ground replay worker, using borrowed payloads with no
+intermediate allocation. Production captures have no trailer or digest storage. A normal
+receiver rejects debug trailers explicitly; a verification receiver also accepts normal
+captures and labels them Reconstructed, never Verified.</p>
+<p>Only debug captures that pass comparison are labeled Verified. A mismatch suppresses
+reconstructed frames until the next matching anchor; native recording continues. Debug
+digests are consumed live and do not add archive sections or change offline log readers.
+Use <code>just telemetry-verify</code> and <code>just sender-verify</code> to run the development checks.
+<code>just resim</code> reconstructs ordinary capture archives offline; the demo's verification
+command compares the result against the full onboard log.</p>
+<p>Run <code>just logstream-twin-check</code> for allocation/native-format checks, both verification
+modes, worker lifecycle, reader isolation, and the UDP loss/recovery/replay scenarios.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+    
+  </body>
+</html>

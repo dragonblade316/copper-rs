@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["MmapUnifiedLogger"],"struct":["LogPosition","MmapRegion","MmapUnifiedLoggerBuilder","MmapUnifiedLoggerRead","UnifiedLoggerIOReader"],"type":["MmapSectionStorage","MmapUnifiedLoggerWrite"]};
